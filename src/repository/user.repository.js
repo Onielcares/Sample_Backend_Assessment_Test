@@ -12,4 +12,12 @@ async function findById(id) {
   return User.findById(id);
 }
 
-module.exports = { createUser, findByEmail, findById };
+async function updateUser(id, updates) {
+  return User.findByIdAndUpdate(
+    id,
+    { $set: updates },
+    { new: true, runValidators: true }
+  );
+}
+
+module.exports = { createUser, findByEmail, findById, updateUser };

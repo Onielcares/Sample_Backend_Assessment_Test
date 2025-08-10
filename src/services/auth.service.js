@@ -3,6 +3,7 @@ const { sendSuccessResponse } = require("../utils/success-response");
 const {
   registerValidator,
   loginValidator,
+  updateProfileValidator,
 } = require("../validators/user.validator");
 const { comparePassword } = require("../utils/helpers");
 const { userRepository } = require("../repository");
@@ -71,13 +72,10 @@ class AuthService {
     const user = await userRepository.findById(userId);
     if (!user) throw throwNotFoundError("User not found");
 
-    // Only allow safe fields
-    const safe = {};
-    ["name", "email"].forEach((k) => {
-      if (updates[k]) safe[k] = updates[k];
-    });
+    const { valid, error, value } = updateProfileValidator(updates);
+    if (!valid) throw throwBadRequestError(error);
 
-    const updated = await userRepository.updateUser(userId, safe);
+    const updated = await userRepository.updateUser(userId, value);
     return updated;
   }
 }

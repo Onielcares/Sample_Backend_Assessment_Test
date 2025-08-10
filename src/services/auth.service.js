@@ -58,7 +58,13 @@ class AuthService {
   async getProfile(userId) {
     const user = await userRepository.findById(userId);
     if (!user) throw throwNotFoundError("User not found");
-    return user;
+
+    const userValue = {
+      name: user.name,
+      email: user.email,
+    };
+
+    return userValue;
   }
 
   async updateProfile(userId, updates) {

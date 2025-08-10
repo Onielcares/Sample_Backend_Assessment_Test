@@ -37,7 +37,6 @@ function sendErrorResponse(
     status,
     message,
     data,
-    errors, // optional: include validation details when available
   });
 }
 

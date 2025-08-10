@@ -1,5 +1,5 @@
 const logger = require("../utils/logger");
-const { messageRepository } = require("../repository/message.repository");
+const messageRepository = require("../repository/message.repository");
 const { throwBadRequestError } = require("../utils/throwErrors");
 
 class MessageService {

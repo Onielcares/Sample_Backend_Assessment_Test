@@ -53,7 +53,7 @@ app.use(requestLogger());
 logger.info("Tracing failure");
 app.get("/health-check", (_req, res) =>
   sendSuccessResponse(res, {
-    message: "Hospital Management System API is Up 🚑",
+    message: "Sample Backend Assesment Test API 🚑",
   })
 );
 
